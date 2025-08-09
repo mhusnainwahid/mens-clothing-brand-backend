@@ -10,6 +10,9 @@ const productSchema = new Schema({
     desc:{
         type: String
     },
+    imageUrl:{
+        type: String
+    },
     vendorId:{
         type: mongoose.Schema.Types.ObjectId,
         ref: "User"

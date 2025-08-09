@@ -2,11 +2,12 @@ import Product from "../models/product.js";
 
 export const createPro = async (req, res) => {
   try {
-    const { productName, price, desc, vendorId } = req.body;
+    const { productName, price, desc, vendorId,imageUrl } = req.body;
     const product = await Product.create({
       productName,
       price,
       desc,
+      imageUrl,
       vendorId,
     });
     return res.status(200).json({
@@ -21,17 +22,30 @@ export const createPro = async (req, res) => {
   }
 };
 
-export const getPro = async (req, res) => {
+export const getAllPro = async (req, res) => {
   try {
     const product = await Product.find()
     return res.status(200).json(product);
   } catch (error) {
     return res.status(500).json({
-      message: "An error occurred while creating product!",
+      message: "An error occurred while getting all product!",
       error: error.message,
     });
   }
 };
+export const getPro = async (req, res) => {
+  try {
+    const {id} = req.params
+    const product = await Product.findById(id)
+    return res.status(200).json(product);
+  } catch (error) {
+    return res.status(500).json({
+      message: "An error occurred while getting a product!",
+      error: error.message,
+    });
+  }
+};
+
 
 export const deletePro = async (req, res) => {
   try {
