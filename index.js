@@ -4,6 +4,7 @@ import cors from 'cors'
 import { mongoDb } from './src/config/mongoDb.js'
 import authRoutes from './src/routes/auth.js'
 import productRoutes from './src/routes/product.js'
+import generalRoutes from './src/routes/general.routes.js'
 
 const app = express()
 const PORT = process.env.PORT || 3030
@@ -14,6 +15,7 @@ app.use(cors())
 
 app.use('/',authRoutes)
 app.use('/',productRoutes)
+app.use('/',generalRoutes)
 
 app.listen(PORT,()=>{
     console.log(`Server is running on Port: ${PORT}`)
