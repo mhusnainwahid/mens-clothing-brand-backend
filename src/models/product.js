@@ -1,7 +1,7 @@
 import mongoose, { model, Schema } from "mongoose";
 
 const productSchema = new Schema({
-    name:{
+    productName:{
         type : String
     },
     price:{
