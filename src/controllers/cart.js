@@ -9,14 +9,15 @@ export const addToCart = async (req,res)=>{
             cartItem.quantity += 1;
             await cartItem.save()
         }else{
-            const { vendorId, productName, price, imageUrl} = req.body
-            const cartItem = Cart.create({
+            const { vendorId, productName, price, imageUrl, quantity} = req.body
+            const cartItem = await Cart.create({
                 productId,
                 userId,
                 vendorId,
                 productName,
                 price,
-                imageUrl
+                imageUrl,
+                quantity,
             })
             return res.status(201).json({
                 message: "Product added to cart successfully!",
@@ -26,6 +27,22 @@ export const addToCart = async (req,res)=>{
     } catch (error) {
         return res.status(500).json({
             message: "An error occurred while adding to cart",
+            error: error.message
+        })
+    }
+}
+
+export const getCartItems =async (req,res) =>{
+    try {
+        const {userId} = req.params
+        const cartItems = await Cart.find({userId})
+        return res.status(200).json({
+            message: "Cart items fetched successfully!",
+            cartItems,
+        })
+    } catch (error) {
+        return res.status(500).json({
+            message:"An error occurred while fetching cart items!",
             error: error.message
         })
     }

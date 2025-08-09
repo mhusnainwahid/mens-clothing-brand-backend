@@ -22,7 +22,7 @@ const cartSchema = new Schema({
   price:{
     type : Number
   },
-  ImageUrl:{
+  imageUrl:{
     type : String
   }
 
