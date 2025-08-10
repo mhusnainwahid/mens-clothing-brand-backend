@@ -6,6 +6,7 @@ import authRoutes from './src/routes/auth.js'
 import productRoutes from './src/routes/product.js'
 import generalRoutes from './src/routes/general.routes.js'
 import cartRoutes from './src/routes/cart.js'
+import contactRoutes from './src/routes/contact.js'
 
 const app = express()
 const PORT = process.env.PORT || 3030
@@ -18,6 +19,7 @@ app.use('/',authRoutes)
 app.use('/',productRoutes)
 app.use('/',generalRoutes)
 app.use('/',cartRoutes)
+app.use('/', contactRoutes)
 
 app.listen(PORT,()=>{
     console.log(`Server is running on Port: ${PORT}`)
