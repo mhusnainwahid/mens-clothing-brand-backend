@@ -33,6 +33,19 @@ export const getAllPro = async (req, res) => {
     });
   }
 };
+
+export const getSomePro = async (req, res) => {
+  try {
+    const products = await Product.find().sort({ createdAt: -1 });
+    return res.status(200).json(products);
+  } catch (error) {
+    return res.status(500).json({
+      message: "An error occurred while getting all product!",
+      error: error.message,
+    });
+  }
+};
+
 export const getPro = async (req, res) => {
   try {
     const {id} = req.params
