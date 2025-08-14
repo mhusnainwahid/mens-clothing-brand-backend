@@ -51,7 +51,7 @@ export const deleteCartItems = async (req, res) => {
     try {
         const { productId } = req.params;
 
-        const deletedItem = await Cart.findOneAndDelete({ productId }); // productId field ke basis par delete
+        const deletedItem = await Cart.findOneAndDelete({ productId });
 
         if (!deletedItem) {
             return res.status(404).json({ message: "Cart item not found!" });
