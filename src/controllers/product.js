@@ -33,6 +33,23 @@ export const getAllPro = async (req, res) => {
     });
   }
 };
+
+
+export const getvendorPro = async (req, res) => {
+  try {
+    const { vendorId } = req.params
+    const product = await Product.find({vendorId})
+    return res.status(200).json(product);
+  } catch (error) {
+    return res.status(500).json({
+      message: "An error occurred while getting vendor product!",
+      error: error.message,
+    });
+  }
+};
+
+
+
 export const getPro = async (req, res) => {
   try {
     const {id} = req.params
