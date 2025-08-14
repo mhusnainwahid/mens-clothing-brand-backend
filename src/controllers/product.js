@@ -34,6 +34,7 @@ export const getAllPro = async (req, res) => {
   }
 };
 
+<<<<<<< HEAD
 
 export const getvendorPro = async (req, res) => {
   try {
@@ -43,13 +44,25 @@ export const getvendorPro = async (req, res) => {
   } catch (error) {
     return res.status(500).json({
       message: "An error occurred while getting vendor product!",
+=======
+export const getSomePro = async (req, res) => {
+  try {
+    const products = await Product.find().sort({ createdAt: -1 });
+    return res.status(200).json(products);
+  } catch (error) {
+    return res.status(500).json({
+      message: "An error occurred while getting all product!",
+>>>>>>> d2d557d9f4d1e60a0dc401221e682737ecb55b16
       error: error.message,
     });
   }
 };
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> d2d557d9f4d1e60a0dc401221e682737ecb55b16
 export const getPro = async (req, res) => {
   try {
     const {id} = req.params
