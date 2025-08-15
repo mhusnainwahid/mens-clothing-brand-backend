@@ -1,6 +1,6 @@
 import User from "../models/auth.js";
 import bcrypt from "bcrypt";
-import jwt from 'jsonwebtoken'
+import jwt from "jsonwebtoken";
 
 export const signupUser = async (req, res) => {
   try {
@@ -23,9 +23,28 @@ export const signupUser = async (req, res) => {
       name,
       email,
       password: hashPass,
-      role
+      role,
     };
     const user = await User.create(userObj);
+
+    // const transporter = nodemailer.createTransport({
+    //   service: "Gmail",
+    //   auth: {
+    //     user: process.env.MY_EMAIL,
+    //     pass: "jn7jnAPss4f63QBp6D",
+    //   },
+    // });
+
+    // const info = await transporter.sendMail({
+    //   from: process.env.MY_EMAIL,
+    //   to: ,
+    //   subject: "Hello ✔",
+    //   text: "Hello world?",
+    //   html: "<b>Hello world?</b>",
+    // });
+
+    console.log("Message sent:", info.messageId);
+
     return res.status(200).json({
       message: "User signup successfully!",
       user,
@@ -55,18 +74,18 @@ export const loginUser = async (req, res) => {
     const comparePass = bcrypt.compareSync(password, existUser.password);
     if (!comparePass) {
       return res.status(400).json({
-        message: "Wrong credentials!"
+        message: "Wrong credentials!",
       });
     }
     const token = jwt.sign(
-        {name:existUser.name,email},
-        process.env.JWT_SECRET_KEY,
-        {expiresIn:"1d"}
-    )
+      { name: existUser.name, email },
+      process.env.JWT_SECRET_KEY,
+      { expiresIn: "1d" }
+    );
     return res.status(200).json({
       message: "User login successfully!",
       existUser,
-      token
+      token,
     });
   } catch (error) {
     return res.status(500).json({
