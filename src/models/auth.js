@@ -12,6 +12,19 @@ const userSchema = new Schema({
     },
     role:{
         type: String
+    },
+    token:{
+        type: String
+    },
+    isVerified:{
+        type: Boolean,
+        default: false
+    },
+    verificationCode:{
+        type: String
+    },
+    codeExpires:{
+        type: Date
     }
 })
 
